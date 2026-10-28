@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 15191c853d81f294980d8a061e48507c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 406148
+  packageName: Stylized Flasks
+  packageVersion: 1.0
+  assetPath: Assets/StylizedFlasks/Scenes/Showcase_HDRP/Black.mat
+  uploadId: 991104

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 60a8a7b858e47ff48b7ed0be8f45a6c2
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 406148
+  packageName: Stylized Flasks
+  packageVersion: 1.0
+  assetPath: Assets/StylizedFlasks/Built-In/Materials/M_Flask_03.mat
+  uploadId: 991104
