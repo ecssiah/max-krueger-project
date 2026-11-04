@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    readonly List<ItemDefinition> item_list = new();
+    readonly List<ItemDefinition> itemDefinitionList = new();
     
     public event Action ChangedAction;
 
     public bool Has(ItemDefinition item_definition)
     {
-        return item_list.Contains(item_definition);
+        return itemDefinitionList.Contains(item_definition);
     }
 
     public void Add(ItemDefinition item_definition)    
-    { 
-        item_list.Add(item_definition); 
+    {
+        itemDefinitionList.Add(item_definition); 
         
         ChangedAction?.Invoke(); 
     }
 
     public bool Remove(ItemDefinition item_definition) 
     { 
-        bool removed = item_list.Remove(item_definition); 
+        bool removed = itemDefinitionList.Remove(item_definition); 
         
         if (removed) 
         {
