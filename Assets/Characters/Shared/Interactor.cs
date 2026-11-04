@@ -4,7 +4,7 @@ public class Interactor : MonoBehaviour
 {
     [SerializeField] Camera camera;
 
-    [SerializeField] float range = 0.5f;
+    [SerializeField] float range = 1.0f;
 
     float interactTimer = 1.0f;
     readonly float interactCooldown = 1.0f;

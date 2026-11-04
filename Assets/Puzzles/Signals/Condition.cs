@@ -24,7 +24,7 @@ public class Condition : PuzzleSignal
     { 
         foreach (PuzzleSignal signal in signalList)
         {
-            signal.ChangedAction += OnInput; 
+            signal.SignalAction += OnInput; 
         }
     }
 
@@ -32,7 +32,7 @@ public class Condition : PuzzleSignal
     { 
         foreach (PuzzleSignal signal in signalList)
         {
-            signal.ChangedAction -= OnInput; 
+            signal.SignalAction -= OnInput; 
         }
     }
 
@@ -75,9 +75,9 @@ public class Condition : PuzzleSignal
         { 
             sequenceIndex = 0;
 
-            foreach (PuzzleSignal input in signalList) 
+            foreach (PuzzleSignal signal in signalList) 
             {
-                input.ResetSignal(); 
+                signal.SetOn(false); 
             }
         }
 

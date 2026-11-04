@@ -4,31 +4,61 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    readonly List<ItemDefinition> itemDefinitionList = new();
-    
-    public event Action ChangedAction;
+    private readonly Dictionary<ItemDefinition, int> itemDefinitionDictionary = new Dictionary<ItemDefinition, int>();
 
-    public bool Has(ItemDefinition item_definition)
+    public event Action<ItemDefinition, int> ChangedAction;
+
+    public IReadOnlyDictionary<ItemDefinition, int> GetItemDefinitionDictionary()
     {
-        return itemDefinitionList.Contains(item_definition);
+        return itemDefinitionDictionary;
     }
 
-    public void Add(ItemDefinition item_definition)    
+    public int GetQuantity(ItemDefinition itemDefinition)
     {
-        itemDefinitionList.Add(item_definition); 
-        
-        ChangedAction?.Invoke(); 
+        return itemDefinitionDictionary.GetValueOrDefault(itemDefinition, 0);
     }
 
-    public bool Remove(ItemDefinition item_definition) 
-    { 
-        bool removed = itemDefinitionList.Remove(item_definition); 
-        
-        if (removed) 
+    public bool Has(ItemDefinition itemDefinition, int amount = 1)
+    {
+        return GetQuantity(itemDefinition) >= amount;
+    }
+
+    public void Add(ItemDefinition itemDefinition, int amount = 1)
+    {
+        if (amount < 0)
         {
-            ChangedAction?.Invoke(); 
+            throw new ArgumentOutOfRangeException(nameof(amount));
         }
 
-        return removed;
+        int newAmount = GetQuantity(itemDefinition) + amount;
+        itemDefinitionDictionary[itemDefinition] = newAmount;
+        
+        ChangedAction?.Invoke(itemDefinition, newAmount); 
+    }
+
+    public bool Remove(ItemDefinition itemDefinition, int amount = 1) 
+    { 
+        if (amount < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(amount));
+        }
+
+        if (!Has(itemDefinition))
+        {
+            return false;
+        }
+
+        int newAmount = itemDefinitionDictionary[itemDefinition] - amount;
+        
+        if (newAmount == 0)
+        {
+            itemDefinitionDictionary.Remove(itemDefinition);
+        }
+        else
+        {
+            itemDefinitionDictionary[itemDefinition] = newAmount;
+        }
+
+        return true;
     }
 }

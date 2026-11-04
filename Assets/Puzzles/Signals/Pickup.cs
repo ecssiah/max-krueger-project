@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
-public class Pickup : MonoBehaviour, IInteractable
+public class Pickup : PuzzleSignal, IInteractable
 {
     [SerializeField] ItemDefinition itemDefinition;
 
@@ -29,6 +29,7 @@ public class Pickup : MonoBehaviour, IInteractable
     public void Interact(Interactor interactor)
     {
         interactor.Inventory.Add(itemDefinition);
+        
         gameObject.SetActive(false);
     }
 }

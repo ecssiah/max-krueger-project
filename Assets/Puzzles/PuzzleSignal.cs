@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class PuzzleSignal : MonoBehaviour
 {
-    public event Action<PuzzleSignal> ChangedAction;
+    public event Action<PuzzleSignal> SignalAction;
 
     public bool IsOn 
     { 
@@ -11,7 +11,7 @@ public abstract class PuzzleSignal : MonoBehaviour
         private set; 
     }
 
-    protected void SetOn(bool value)
+    public void SetOn(bool value)
     {
         if (IsOn == value) 
         {
@@ -19,11 +19,6 @@ public abstract class PuzzleSignal : MonoBehaviour
         }
 
         IsOn = value;
-        ChangedAction?.Invoke(this);
+        SignalAction?.Invoke(this);
     }
-
-    public virtual void ResetSignal()
-    {
-        SetOn(false);  
-    } 
 }

@@ -4,8 +4,10 @@ using UnityEngine.Events;
 
 public class InventoryCheck : PuzzleSignal, IInteractable
 {
-    [SerializeField] List<ItemDefinition> requiredItemList;
+    [SerializeField] List<ItemDefinition> requiredItemDefinitionList;
+
     [SerializeField] bool consumeItems;
+    
     [SerializeField] UnityEvent onMissingItems;
 
     public void Interact(Interactor interactor)
@@ -15,7 +17,7 @@ public class InventoryCheck : PuzzleSignal, IInteractable
             return;
         }
 
-        if (!requiredItemList.TrueForAll(interactor.Inventory.Has))
+        if (!requiredItemDefinitionList.TrueForAll(itemDefinition => interactor.Inventory.Has(itemDefinition)))
         {
             onMissingItems.Invoke();
             return;
@@ -23,9 +25,9 @@ public class InventoryCheck : PuzzleSignal, IInteractable
 
         if (consumeItems)
         {
-            foreach (ItemDefinition item in requiredItemList) 
+            foreach (ItemDefinition itemDefinition in requiredItemDefinitionList) 
             {
-                interactor.Inventory.Remove(item);
+                interactor.Inventory.Remove(itemDefinition);
             }
         }
 

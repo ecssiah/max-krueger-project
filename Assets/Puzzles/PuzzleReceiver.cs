@@ -3,26 +3,28 @@ using UnityEngine.Events;
 
 public class PuzzleReceiver : MonoBehaviour
 {
-    [SerializeField] PuzzleSignal source;
-    [SerializeField] bool inverted;
+    [SerializeField] PuzzleSignal sourceSignal;
+    
+    [SerializeField] bool invertsSignal;
+    
     [SerializeField] UnityEvent onActivated;
     [SerializeField] UnityEvent onDeactivated;
 
     void OnEnable()  
     { 
-        source.ChangedAction += Handle;
+        sourceSignal.SignalAction += HandleSignal;
 
-        Handle(source); 
+        HandleSignal(sourceSignal); 
     }
 
     void OnDisable() 
     { 
-        source.ChangedAction -= Handle; 
+        sourceSignal.SignalAction -= HandleSignal; 
     }
 
-    void Handle(PuzzleSignal signal)
+    void HandleSignal(PuzzleSignal signal)
     {
-        if (signal.IsOn ^ inverted) 
+        if (signal.IsOn ^ invertsSignal) 
         {
             onActivated.Invoke(); 
         }
