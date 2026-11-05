@@ -27,5 +27,10 @@ public class AllCondition : PuzzleSignal
         bool allOn = signalList.All(signal => signal.IsOn);
 
         SetOn(allOn);
+
+        if (allOn && name == "Solution")
+        {
+            PuzzleUI.Instance.SetText("Puzzle Complete!");
+        }
     }
 }
