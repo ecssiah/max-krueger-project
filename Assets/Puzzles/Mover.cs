@@ -40,11 +40,11 @@ public class Mover : MonoBehaviour
 
         progress = Mathf.MoveTowards(progress, target, Time.deltaTime / duration);
 
-        float t = animationCurve.Evaluate(progress);
+        float curveValue = animationCurve.Evaluate(progress);
         
         transform.SetLocalPositionAndRotation(
-            deactivatedPosition + activatedOffset * t, 
-            deactivatedRotation * Quaternion.Euler(activatedRotation * t)
+            deactivatedPosition + activatedOffset * curveValue, 
+            deactivatedRotation * Quaternion.Euler(activatedRotation * curveValue)
         );
     }
 }

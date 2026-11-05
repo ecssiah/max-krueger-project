@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Pickup : PuzzleSignal, IInteractable
+public class Item : PuzzleSignal, IInteractable
 {
     [SerializeField] ItemDefinition itemDefinition;
 

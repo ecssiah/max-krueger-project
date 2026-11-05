@@ -1,34 +1,15 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Mover))]
 public class Lever : PuzzleSignal, IInteractable
 {
     [SerializeField] bool singleUse = false;
 
-    [SerializeField] Mover mover;
+    Mover mover;
 
-    void OnEnable() 
+    void Awake()
     {
-        SignalAction += ApplyVisual;
-    }
-
-    void OnDisable()
-    {
-        SignalAction -= ApplyVisual;
-    }
-
-    void ApplyVisual(PuzzleSignal _)
-    {
-        if (mover != null) 
-        {
-            if (IsOn)
-            {
-                mover.Activate();
-            }
-            else
-            {
-                mover.Deactivate();
-            }
-        }
+        mover = GetComponent<Mover>();
     }
 
     public void Interact(Interactor interactor)
@@ -39,5 +20,14 @@ public class Lever : PuzzleSignal, IInteractable
         }
 
         SetOn(!IsOn);
+
+        if (IsOn)
+        {
+            mover.Activate();
+        }
+        else
+        {
+            mover.Deactivate();
+        }
     }
 }

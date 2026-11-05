@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SequenceSignal : PuzzleSignal
+public class SequenceCondition : PuzzleSignal
 {
     [SerializeField] List<PuzzleSignal> signalList;
 

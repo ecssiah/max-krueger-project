@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class AllSignal : PuzzleSignal
+public class AllCondition : PuzzleSignal
 {
     [SerializeField] List<PuzzleSignal> signalList;
 
@@ -27,10 +27,5 @@ public class AllSignal : PuzzleSignal
         bool allOn = signalList.All(signal => signal.IsOn);
 
         SetOn(allOn);
-
-        if (allOn)
-        {
-            print("Puzzle Complete!");
-        }
     }
 }

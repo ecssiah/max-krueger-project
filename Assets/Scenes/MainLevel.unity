@@ -510,6 +510,10 @@ PrefabInstance:
       value: Door B
       objectReference: {fileID: 0}
     - target: {fileID: 5085332922677398554, guid: e09b85c007539461aab8d5104a5f7cea, type: 3}
+      propertyPath: mover
+      value: 
+      objectReference: {fileID: 1108062658}
+    - target: {fileID: 5085332922677398554, guid: e09b85c007539461aab8d5104a5f7cea, type: 3}
       propertyPath: sourceSignal
       value: 
       objectReference: {fileID: 920774268}
@@ -5607,6 +5611,10 @@ PrefabInstance:
       value: Door A
       objectReference: {fileID: 0}
     - target: {fileID: 5085332922677398554, guid: e09b85c007539461aab8d5104a5f7cea, type: 3}
+      propertyPath: mover
+      value: 
+      objectReference: {fileID: 1271775998}
+    - target: {fileID: 5085332922677398554, guid: e09b85c007539461aab8d5104a5f7cea, type: 3}
       propertyPath: sourceSignal
       value: 
       objectReference: {fileID: 2114661074}
@@ -6543,14 +6551,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 920774266}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20f6a9a39d0d246ac8f663e709dde5a5, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c51433860c2a4c5d9fe09fe2702c707, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Pattern
+  m_EditorClassIdentifier: Assembly-CSharp::AllCondition
   signalList:
   - {fileID: 1009746679}
   - {fileID: 317831420}
   - {fileID: 1050708367}
-  requiredList: 000000000100000002000000i
 --- !u!1001 &921771819
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7711,6 +7718,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a6d3da028ef246e1bf72f42b9d2bb01, type: 3}
+--- !u!114 &1108062658 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1029755511239141627, guid: e09b85c007539461aab8d5104a5f7cea, type: 3}
+  m_PrefabInstance: {fileID: 80799150}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bae2e20f08f14a5bbf4ada742315364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Mover
 --- !u!1001 &1108224855
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8691,6 +8709,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3034254747739091144, guid: a5c8d3a940b824d64b32d988f416cc2a, type: 3}
   m_PrefabInstance: {fileID: 738991091}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1271775998 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1029755511239141627, guid: e09b85c007539461aab8d5104a5f7cea, type: 3}
+  m_PrefabInstance: {fileID: 782664314}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bae2e20f08f14a5bbf4ada742315364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Mover
 --- !u!1001 &1275799707
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14730,11 +14759,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20f6a9a39d0d246ac8f663e709dde5a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pattern
-  signalList:
-  - {fileID: 694822741}
-  - {fileID: 535978036}
-  - {fileID: 1603439902}
-  requiredList: 0000000002000000i
+  signalDictionary:
+  - key: {fileID: 694822741}
+    value: 1
+  - key: {fileID: 535978036}
+    value: 1
+  - key: {fileID: 1603439902}
+    value: 0
 --- !u!1001 &2119432240
 PrefabInstance:
   m_ObjectHideFlags: 0
