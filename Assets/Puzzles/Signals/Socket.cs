@@ -3,60 +3,46 @@ using UnityEngine;
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class ItemSocket : PuzzleSignal, IInteractable
 {
-    [SerializeField] ItemDefinition socketItemDefinition;
-    [SerializeField] ItemDefinition displayItemDefinition;
+    [SerializeField] ItemDefinition itemDefinition;
 
-    MeshFilter displayItemMeshFilter;
-    MeshRenderer displayItemMeshRenderer;
+    [SerializeField] Vector3 SocketOffset = new Vector3(0.0f, 0.0f, 0.0f);
+    [SerializeField] Vector3 SocketRotation = new Vector3(0.0f, 0.0f, 0.0f);
 
-    [SerializeField] Transform displayItemTransform;
-
-    public Vector3 SocketOffset;
-    public Vector3 SocketRotation;
-
-    void OnValidate()
-    {
-        ApplyVisuals();
-    }
+    MeshFilter displayMeshFilter;
+    MeshRenderer displayMeshRenderer;
 
     void Awake()
     {
-        displayItemMeshFilter = displayItemTransform.GetComponent<MeshFilter>();
-        displayItemMeshRenderer = displayItemTransform.GetComponent<MeshRenderer>();
-        displayItemMeshRenderer.enabled = false;
-
-        ApplyVisuals();
-    }
-
-    void ApplyVisuals()
-    {
-        if (socketItemDefinition == null) 
+        foreach (Transform childTransform in transform)
         {
-            return;
-        }
+            displayMeshFilter = childTransform.GetComponentInChildren<MeshFilter>();
+            displayMeshRenderer = childTransform.GetComponentInChildren<MeshRenderer>();
 
-        GetComponent<MeshFilter>().sharedMesh = socketItemDefinition.Mesh;
-        GetComponent<MeshRenderer>().sharedMaterial = socketItemDefinition.Material;
+            if (displayMeshFilter != null && displayMeshRenderer != null)
+            {
+                break;
+            }
+        }
     }
 
     public void Interact(Interactor interactor)
     {
-        if (IsOn || !interactor.Inventory.Has(displayItemDefinition)) 
+        if (IsOn || !interactor.Inventory.Has(itemDefinition, 1)) 
         {
             return;
         }
 
-        interactor.Inventory.Remove(displayItemDefinition);
+        interactor.Inventory.Remove(itemDefinition, 1);
 
-        displayItemTransform.SetLocalPositionAndRotation(
+        displayMeshRenderer.transform.SetLocalPositionAndRotation(
             SocketOffset, 
             Quaternion.Euler(SocketRotation)
         );
         
-        displayItemMeshFilter.sharedMesh = displayItemDefinition.Mesh;
-        displayItemMeshRenderer.sharedMaterial = displayItemDefinition.Material;
-        displayItemMeshRenderer.enabled = true;
-        
+        displayMeshFilter.sharedMesh = itemDefinition.Mesh;
+        displayMeshRenderer.sharedMaterial = itemDefinition.Material;
+        displayMeshRenderer.enabled = true;
+
         SetOn(true);
     }
 }

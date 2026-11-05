@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8aef67a1617a04ee5af1b3b4f5719157, type: 3}
-  m_Name: Statue2
+  m_Name: CandleTriple
   m_EditorClassIdentifier: Assembly-CSharp::ItemDefinition
-  DisplayName: Statue 2
+  DisplayName: 
   Icon: {fileID: 0}
-  Mesh: {fileID: -4408471185266538813, guid: d60d12b02a75698defd8e677b5baa106, type: 3}
+  Mesh: {fileID: -2968571892455474721, guid: a922b35008e1eb00186b70e1bc1cddfc, type: 3}
+  MeshScale: {x: 1, y: 1, z: 1}
   Material: {fileID: 2100000, guid: 0b1d1602e49fb0e3aacf99f507c1b0e5, type: 2}

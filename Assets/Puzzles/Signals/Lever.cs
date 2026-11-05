@@ -20,7 +20,14 @@ public class Lever : PuzzleSignal, IInteractable
     {
         if (mover != null) 
         {
-            mover.Set(IsOn);
+            if (IsOn)
+            {
+                mover.Activate();
+            }
+            else
+            {
+                mover.Deactivate();
+            }
         }
     }
 

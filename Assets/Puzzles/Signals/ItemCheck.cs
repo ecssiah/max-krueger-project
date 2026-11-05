@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class InventoryCheck : PuzzleSignal, IInteractable
+public class ItemCheck : PuzzleSignal, IInteractable
 {
     [SerializeField] List<ItemDefinition> requiredItemDefinitionList;
 
-    [SerializeField] bool consumeItems;
-    
+    [SerializeField] bool removesItems;
+
     [SerializeField] UnityEvent onMissingItems;
 
     public void Interact(Interactor interactor)
@@ -17,20 +17,25 @@ public class InventoryCheck : PuzzleSignal, IInteractable
             return;
         }
 
-        if (!requiredItemDefinitionList.TrueForAll(itemDefinition => interactor.Inventory.Has(itemDefinition)))
-        {
-            onMissingItems.Invoke();
-            return;
-        }
+        bool requirementMet = requiredItemDefinitionList.TrueForAll(
+            itemDefinition => interactor.Inventory.Has(itemDefinition, 1)
+        );
 
-        if (consumeItems)
+        if (requirementMet)
         {
-            foreach (ItemDefinition itemDefinition in requiredItemDefinitionList) 
+            SetOn(true);
+
+            if (removesItems)
             {
-                interactor.Inventory.Remove(itemDefinition);
+                foreach (ItemDefinition itemDefinition in requiredItemDefinitionList) 
+                {
+                    interactor.Inventory.Remove(itemDefinition, 1);
+                }
             }
         }
-
-        SetOn(true);
+        else
+        {
+            onMissingItems.Invoke();
+        }
     }
 }

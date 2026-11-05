@@ -18,12 +18,12 @@ public class Inventory : MonoBehaviour
         return itemDefinitionDictionary.GetValueOrDefault(itemDefinition, 0);
     }
 
-    public bool Has(ItemDefinition itemDefinition, int amount = 1)
+    public bool Has(ItemDefinition itemDefinition, int amount)
     {
         return GetQuantity(itemDefinition) >= amount;
     }
 
-    public void Add(ItemDefinition itemDefinition, int amount = 1)
+    public void Add(ItemDefinition itemDefinition, int amount)
     {
         if (amount < 0)
         {
@@ -36,14 +36,14 @@ public class Inventory : MonoBehaviour
         ChangedAction?.Invoke(itemDefinition, newAmount); 
     }
 
-    public bool Remove(ItemDefinition itemDefinition, int amount = 1) 
+    public bool Remove(ItemDefinition itemDefinition, int amount) 
     { 
         if (amount < 0)
         {
             throw new ArgumentOutOfRangeException(nameof(amount));
         }
 
-        if (!Has(itemDefinition))
+        if (!Has(itemDefinition, amount))
         {
             return false;
         }
